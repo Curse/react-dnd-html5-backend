@@ -18,7 +18,7 @@ export default class HTML5Backend {
     this.sourceNodeOptions = {};
     this.enterLeaveCounter = new EnterLeaveCounter();
 
-    const scopeSelector = '.ChannelList *';
+    const scopeSelector = '.ChannelList.sorting *';
     function scopeEvents(eventHandler) {
       return function(e) {
         if (e.target.matches(scopeSelector)) {
