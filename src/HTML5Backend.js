@@ -18,18 +18,27 @@ export default class HTML5Backend {
     this.sourceNodeOptions = {};
     this.enterLeaveCounter = new EnterLeaveCounter();
 
+    const scopeSelector = '.ChannelList *';
+    function scopeEvents(eventHandler) {
+      return function(e) {
+        if (e.target.matches(scopeSelector)) {
+          eventHandler(e);
+        }
+      };
+    }
+
     this.getSourceClientOffset = this.getSourceClientOffset.bind(this);
-    this.handleTopDragStart = this.handleTopDragStart.bind(this);
-    this.handleTopDragStartCapture = this.handleTopDragStartCapture.bind(this);
-    this.handleTopDragEndCapture = this.handleTopDragEndCapture.bind(this);
-    this.handleTopDragEnter = this.handleTopDragEnter.bind(this);
-    this.handleTopDragEnterCapture = this.handleTopDragEnterCapture.bind(this);
-    this.handleTopDragLeaveCapture = this.handleTopDragLeaveCapture.bind(this);
-    this.handleTopDragOver = this.handleTopDragOver.bind(this);
-    this.handleTopDragOverCapture = this.handleTopDragOverCapture.bind(this);
-    this.handleTopDrop = this.handleTopDrop.bind(this);
-    this.handleTopDropCapture = this.handleTopDropCapture.bind(this);
-    this.handleSelectStart = this.handleSelectStart.bind(this);
+    this.handleTopDragStart = scopeEvents(this.handleTopDragStart.bind(this));
+    this.handleTopDragStartCapture = scopeEvents(this.handleTopDragStartCapture.bind(this));
+    this.handleTopDragEndCapture = scopeEvents(this.handleTopDragEndCapture.bind(this));
+    this.handleTopDragEnter = scopeEvents(this.handleTopDragEnter.bind(this));
+    this.handleTopDragEnterCapture = scopeEvents(this.handleTopDragEnterCapture.bind(this));
+    this.handleTopDragLeaveCapture = scopeEvents(this.handleTopDragLeaveCapture.bind(this));
+    this.handleTopDragOver = scopeEvents(this.handleTopDragOver.bind(this));
+    this.handleTopDragOverCapture = scopeEvents(this.handleTopDragOverCapture.bind(this));
+    this.handleTopDrop = scopeEvents(this.handleTopDrop.bind(this));
+    this.handleTopDropCapture = scopeEvents(this.handleTopDropCapture.bind(this));
+    this.handleSelectStart = scopeEvents(this.handleSelectStart.bind(this));
     this.endDragIfSourceWasRemovedFromDOM = this.endDragIfSourceWasRemovedFromDOM.bind(this);
     this.endDragNativeItem = this.endDragNativeItem.bind(this);
   }
