@@ -267,6 +267,7 @@ export default class HTML5Backend {
   }
 
   handleDragStart(e, sourceId) {
+    if (!this.dragStartSourceIds) { return; }
     this.dragStartSourceIds.unshift(sourceId);
   }
 
@@ -383,6 +384,7 @@ export default class HTML5Backend {
   }
 
   handleDragEnter(e, targetId) {
+    if (!this.dragEnterTargetIds) { return; }
     this.dragEnterTargetIds.unshift(targetId);
   }
 
@@ -421,6 +423,7 @@ export default class HTML5Backend {
   }
 
   handleDragOver(e, targetId) {
+    if (!this.dragOverTargetIds) { return; }
     this.dragOverTargetIds.unshift(targetId);
   }
 
@@ -488,6 +491,7 @@ export default class HTML5Backend {
   }
 
   handleDrop(e, targetId) {
+    if (!this.dropTargetIds) { return; }
     this.dropTargetIds.unshift(targetId);
   }
 
