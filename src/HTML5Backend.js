@@ -21,7 +21,11 @@ export default class HTML5Backend {
     const scopeSelector = '.ChannelList.sorting *';
     function scopeEvents(eventHandler) {
       return function(e) {
-        if (e.target.matches(scopeSelector)) {
+        var target = e.target;
+        if (e.target.nodeType !== Node.ELEMENT_NODE) {
+          target = target.parentElement;
+        }
+        if (target.matches(scopeSelector)) {
           eventHandler(e);
         }
       };
